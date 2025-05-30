@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UPI Reward Offer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      background: linear-gradient(135deg, #283e51 0%, #485563 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 32px;
+      color: #4a148c;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 12px;
+      background: linear-gradient(to right, #e0e0e0, #ffffff);
+      border: 2px solid #ccc;
+      box-shadow:
+        4px 4px 10px rgba(0,0,0,0.3),
+        -4px -4px 10px rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .input-group {
+      position: relative;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .input-group input[type="text"] {
+      width: 100%;
+      padding: 14px 40px 14px 14px;
+      border-radius: 10px;
+      border: 1.8px solid #ccc;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    .input-group input[type="text"]:focus {
+      outline: none;
+      border-color: #4a148c;
+      box-shadow: 0 0 6px #4a148c66;
+    }
+
+    .input-group img {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      opacity: 0.7;
+      user-select: none;
+    }
+
+    button {
+      background-color: #00c853;
+      color: white;
+      padding: 14px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #00b248;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #c50404;
+      text-align: center;
+      padding: 0 10px;
+      user-select: none;
+    }
+
+    .steps {
+      text-align: left;
+      font-size: 16px;
+      margin-top: 25px;
+      width: 100%;
+      color: #333;
+      user-select: none;
+    }
+
+    .steps strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .credited {
+      margin-top: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #2e7d32;
+      user-select: none;
+    }
+
+    .contact-box {
+      margin-top: 35px;
+      text-align: center;
+      font-size: 14px;
+      color: #222;
+      user-select: none;
+    }
+
+    .contact-box h3 {
+      margin-bottom: 6px;
+    }
+
+    .contact-box a {
+      color: #02517c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Loader spinner */
+    .loader {
+      display: none;
+      margin: 20px auto 0 auto;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #ccc;
+      border-top: 4px solid #00c853;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Success message */
+    .success {
+      display: none;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #2e7d32;
+      font-weight: 600;
+      text-align: center;
+      user-select: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://play-lh.googleusercontent.com/ReYS6WkgfktbCMWUkJD-NRSjuONxyq_dUtNWvxRW8lmiGeWxmomZO0Eq6Yrm2GbSTg=w240-h480-rw" alt="App Logo" class="app-logo" />
+    <div class="title">SUN CRYPTO</div>
+    <div class="subtitle">🎁Get ₹350 CashBack in Your UPI Account</div>
+    <div class="input-group">
+      <input type="text" id="upiId" placeholder="Enter Your UPI ID" autocomplete="off" />
+      <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/upi_logo_icon_169316.png" alt="UPI Icon" />
+    </div>
+    <button onclick="handleSubmit()">Submit</button>
+
+    <div class="loader" id="loader"></div>
+    <div class="success" id="successMsg">✅ Submitted successfully! Redirecting...</div>
+
+    <div class="note">
+      ⚠️ Don’t use WIFI!! <br> To receive your reward, turn off WiFi and use mobile internet. Also, the offer is valid for new users only.
+    </div>
+
+    <div class="steps">
+      <strong>Steps To Redeem Your Cashback:</strong>
+      <ol>
+        <li>Enter your UPI ID &amp; click Submit</li>
+        <li>You will be redirected to the partner app</li>
+        <li>Install And Complete Your KYC</li>
+        <li>Complete your first transaction</li>
+      </ol>
+    </div>
+
+    <div class="credited">₹350 Credited WOHOOO!!!</div>
+
+    <div class="contact-box">
+      <h3>Contact Us:</h3>
+      <p>Any query related to cashback? Click Below⬇️</p>
+      <p>
+        <a href="https://t.me/+AamSS2A7SxlkYml1" target="_blank" rel="noopener noreferrer">Telegram Support</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const upiId = document.getElementById('upiId').value.trim();
+      const upiRegex = /^[\w.-]+@[\w]+$/;
+      if (!upiRegex.test(upiId)) {
+        alert('Please enter a valid UPI ID (e.g. username@bank)');
+        return;
+      }
+
+      const loader = document.getElementById('loader');
+      const successMsg = document.getElementById('successMsg');
+
+      loader.style.display = 'block';
+      successMsg.style.display = 'none';
+
+      setTimeout(() => {
+        loader.style.display = 'none';
+        successMsg.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = 'https://join.suncrypto.in/1605763/refer';
+        }, 1200);
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
